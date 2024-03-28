@@ -6,4 +6,9 @@ route.get(
   productsControllers.findProducts,
 );
 
+route.get(
+  '/:id',
+  productsControllers.findProductsById,
+);
+
 module.exports = route;
