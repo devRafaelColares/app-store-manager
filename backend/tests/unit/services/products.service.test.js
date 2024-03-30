@@ -15,13 +15,13 @@ describe('Testando Products Service', function () {
     expect(result).to.be.an('array');
   });
 
-  it('Teste se é retornado um objeto', async function () { 
+  it('Verifica se é retornado um objeto', async function () { 
     sinon.stub(connection, 'execute').resolves([specificProduct]);
     const result = await productsService.allProductsModel();
     expect(result[0]).to.be.an('object');
   });
 
-  it('Teste se é retornado o id do produto', async function () {
+  it('Verifica se é retornado o id do produto', async function () {
     sinon.stub(connection, 'execute').resolves([specificProduct]);
     const result = await productsService.allProductsModel();
     expect(result[0]).to.have.property('id');
