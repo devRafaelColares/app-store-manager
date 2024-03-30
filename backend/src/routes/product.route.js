@@ -11,4 +11,9 @@ route.get(
   productsControllers.findProductsById,
 );
 
+route.post(
+  '/',
+  productsControllers.createProduct,
+);
+
 module.exports = route;

@@ -12,7 +12,14 @@ const findProductsById = async (req, res) => {
   return res.status(200).json(product);
 };
 
+const createProduct = async (req, res) => {
+  const { name } = req.body;
+  const product = await productsServices.createProductModel(name);
+  return res.status(201).json({ id: product, name });
+};
+
 module.exports = {
   findProducts,
   findProductsById,
+  createProduct,
 };

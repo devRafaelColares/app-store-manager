@@ -39,6 +39,21 @@ describe('Testando Products Controller', function () {
     connection.execute.restore();
   });
 
+  it('Verifica se é possivel cadastrar um produto com suscesso', async function () {
+    const req = { body: { name: 'ProdutoX' } };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
+
+    await productsController.createProduct(req, res);
+
+    expect(res.status.calledWith(201)).to.be.equal(true);
+    expect(res.json.calledWith({ id: 1, name: 'ProdutoX' })).to.be.equal(true);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
