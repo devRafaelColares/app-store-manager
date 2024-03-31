@@ -9,7 +9,7 @@ describe('Testando Products Service', function () {
     sinon.restore();
   });
       
-  it('Teste se é retornado um array', async function () {
+  it('Verifica se é retornado um array', async function () {
     sinon.stub(connection, 'execute').resolves([specificProduct]);
     const result = await productsService.allProductsModel();
     expect(result).to.be.an('array');

@@ -10,7 +10,10 @@ const verifyIdIsString = async (id) => {
   return null;
 };
 
-const createProductModel = async (name) => functionsProductsModel.createProduct(name);
+const createProductModel = async (name) => {
+  if (!name) return null;
+  return functionsProductsModel.createProduct(name);
+};
 
 module.exports = {
   verifyIdIsString,
