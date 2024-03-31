@@ -14,11 +14,8 @@ const saleByIdService = async (id) => {
 };
 
 const createSaleService = async (body) => {
-  if (body) {
-    const sale = await salesModel.createSale(body);
-    return sale;
-  }
-  return null;
+  const sale = await salesModel.createSale(body);
+  return sale;
 };
 
 module.exports = {
