@@ -19,4 +19,12 @@ describe('Testando Sales Service', function () {
     const result = await salesServices.saleByIdService('1');
     expect(result).to.be.deep.equal(saleById);
   });
+
+  it('Verifica se retorna undefined quando o parâmetro body não existe', async function () {
+    sinon.stub(salesServices, 'createSaleService');
+
+    const result = await salesServices.createSaleService();
+
+    expect(result).to.be.equal(undefined);
+  });
 });
