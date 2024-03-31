@@ -12,7 +12,15 @@ const findSaleById = async (req, res) => {
   return res.status(200).json(sale);
 };
 
+const createSale = async (req, res) => {
+  const { body } = req;
+  const sale = await salesServices.createSaleService(body);
+  if (!sale) return res.status(500).json({ message: 'Internal server error' });
+  return res.status(201).json(sale);
+};
+
 module.exports = {
   findAllSales,
   findSaleById,
+  createSale,
 };

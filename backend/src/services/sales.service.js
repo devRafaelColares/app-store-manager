@@ -13,7 +13,16 @@ const saleByIdService = async (id) => {
   return null;
 };
 
+const createSaleService = async (body) => {
+  if (body) {
+    const sale = await salesModel.createSale(body);
+    return sale;
+  }
+  return null;
+};
+
 module.exports = {
   allSalesService,
   saleByIdService,
+  createSaleService,
 };
