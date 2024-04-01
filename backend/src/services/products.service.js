@@ -20,9 +20,15 @@ const updateProductModel = async (id, name) => {
   return functionsProductsModel.updateProduct(id, name);
 };
 
+const deleteProductModel = async (id) => {
+  if (!id) return null;
+  return functionsProductsModel.deleteProduct(id);
+};
+
 module.exports = {
   verifyIdIsString,
   allProductsModel,
   createProductModel,
   updateProductModel,
+  deleteProductModel,
 };

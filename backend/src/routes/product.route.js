@@ -25,4 +25,10 @@ route.put(
   productsControllers.updateProduct,
 );
 
+route.delete(
+  '/:id',
+  validateProductExists,
+  productsControllers.deleteProduct,
+);
+
 module.exports = route;
