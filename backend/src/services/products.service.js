@@ -15,8 +15,14 @@ const createProductModel = async (name) => {
   return functionsProductsModel.createProduct(name);
 };
 
+const updateProductModel = async (id, name) => {
+  if (!name) return null;
+  return functionsProductsModel.updateProduct(id, name);
+};
+
 module.exports = {
   verifyIdIsString,
   allProductsModel,
   createProductModel,
+  updateProductModel,
 };

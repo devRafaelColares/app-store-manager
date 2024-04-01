@@ -3,11 +3,12 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
 
-const validateProduct = require('../../../src/middlewares/validateProduct');
+const { validateProduct, validateProductExists } = require('../../../src/middlewares/products.middlewares');
+let checkIfProductExists = require('../../../src/utils/checkIfProductExists');
 
 chai.use(chaiHttp);
 
-describe('Testando validateProduct middleware', function () {
+describe('Testando os middlewares de products.middlewares ', function () {
   let req;
   let res;
   let next;
@@ -51,5 +52,23 @@ describe('Testando validateProduct middleware', function () {
     expect(res.status.called).to.be.equal(false);
     expect(res.json.called).to.be.equal(false);
     expect(next.calledOnce).to.be.equal(true);
+  });
+
+  it('Verifica se o middleware validateProductExists retorna o status 404', async function () {
+    req = { params: { id: 123 } };
+    res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+    next = sinon.spy();
+  
+    const checkIfProductExistsStub = sinon.stub().resolves(false);
+    const originalCheckIfProductExists = checkIfProductExists;
+    checkIfProductExists = checkIfProductExistsStub;
+  
+    await validateProductExists(req, res, next);
+  
+    checkIfProductExists = originalCheckIfProductExists;
+  
+    expect(res.status.calledWith(404)).to.be.equal(true);
+    expect(res.json.calledWith({ message: 'Product not found' })).to.be.equal(true);
+    expect(next.called).to.be.equal(false);
   });
 });

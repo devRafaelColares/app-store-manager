@@ -9,7 +9,7 @@ describe('Testando Sales Controller', function () {
     sinon.restore();
   });
 
-  it('Testando a listagem de todas as vendas', async function () {
+  it('Verifica a listagem de todas as vendas', async function () {
     const req = {};
     const res = {};
 
@@ -23,7 +23,7 @@ describe('Testando Sales Controller', function () {
     expect(res.json.calledWith(allSales)).to.be.equal(true);
   });
 
-  it('Testando a listagem de uma venda pelo id', async function () {
+  it('Verifica a listagem de uma venda pelo id', async function () {
     const req = { params: { id: 1 } };
     const res = {};
 
@@ -38,7 +38,7 @@ describe('Testando Sales Controller', function () {
     expect(res.json.calledWith(saleById)).to.be.equal(false);
   });
 
-  it('Testando se é possível cadastrar uma nova venda', async function () {
+  it('Verifica se é possível cadastrar uma nova venda', async function () {
     const req = { body: salesData };
     const res = {};
 

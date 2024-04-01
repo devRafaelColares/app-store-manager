@@ -5,7 +5,7 @@ const {
   validateProductIdExists,
   validateIfQuantityMoreThanZero,
   validateIfQuantityExist,
-} = require('../middlewares/validateCreateSales');
+} = require('../middlewares/sales.middlewares');
 
 route.get(
   '/',

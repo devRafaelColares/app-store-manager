@@ -8,14 +8,14 @@ const {
   validateIfQuantityExist,
   validateIfQuantityMoreThanZero,
   validateProductIdExists,
-} = require('../../../src/middlewares/validateCreateSales');
+} = require('../../../src/middlewares/sales.middlewares');
 
 chai.use(chaiHttp);
 
-describe('Testa os middlewares de validateCreateSales', function () {
+describe('Testando os middlewares de sales.middlewares', function () {
   afterEach(sinon.restore);
 
-  it('Testa se o middleware validateProductId retorna o status 400', async function () {
+  it('Verifica se o middleware validateProductId retorna o status 400', async function () {
     const req = { body: [] };
     const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
     const next = sinon.stub();
@@ -27,7 +27,7 @@ describe('Testa os middlewares de validateCreateSales', function () {
     expect(next.called).to.be.equal(false);
   });
 
-  it('Testa se o middleware validateIfQuantityExist retorna o status 400', async function () {
+  it('Verifica se o middleware validateIfQuantityExist retorna o status 400', async function () {
     const req = { body: [{ productId: 1 }] };
     const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
     const next = sinon.stub();
@@ -39,7 +39,7 @@ describe('Testa os middlewares de validateCreateSales', function () {
     expect(next.called).to.be.equal(false);
   });
 
-  it('Testa se o middleware validateIfQuantityMoreThanZero retorna o status 422', async function () {
+  it('Verifica se o middleware validateIfQuantityMoreThanZero retorna o status 422', async function () {
     const req = { body: [{ productId: 1, quantity: -1 }] };
     const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
     const next = sinon.stub();
@@ -51,7 +51,7 @@ describe('Testa os middlewares de validateCreateSales', function () {
     expect(next.called).to.be.equal(false);
   });
 
-  it('Testa se o middleware validateProductIdExists retorna o status 404', async function () {
+  it('Verifica se o middleware validateProductIdExists retorna o status 404', async function () {
     const req = { body: [
       {
         productId: 9999,
