@@ -3,13 +3,13 @@ const checkIfProductExists = require('../utils/checkIfProductExists');
 const validateProductId = (req, res, next) => {
   const { body } = req;
     
-  if (!Array.isArray(body)) {
-    return res.status(400).json({ message: 'Request body should be an array' });
+  if (body.length === 0) {
+    return res.status(400).json({ message: '"productId" is required' });
   }
   
   for (let i = 0; i < body.length; i += 1) {
     const item = body[i];
-    if (!item.productId) {
+    if (!item.productId || item.length === 0) {
       return res.status(400).json({ message: '"productId" is required' });
     }
   }
