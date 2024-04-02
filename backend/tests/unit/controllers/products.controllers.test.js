@@ -54,6 +54,35 @@ describe('Testando Products Controller', function () {
     expect(res.json.calledWith({ id: 1, name: 'ProdutoX' })).to.be.equal(true);
   });
 
+  it('Verifica se é possivel atualizar um produto com suscesso', async function () {
+    const req = { params: { id: 1 }, body: { name: 'ProdutoX' } };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    await productsController.updateProduct(req, res);
+
+    expect(res.status.calledWith(200)).to.be.equal(true);
+    expect(res.json.calledWith({ id: 1, name: 'ProdutoX' })).to.be.equal(true);
+  });
+
+  it('Verifica se é possivel deletar um produto com suscesso', async function () {
+    const req = { params: { id: 1 } };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    await productsController.deleteProduct(req, res);
+
+    expect(res.status.calledWith(204)).to.be.equal(true);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
